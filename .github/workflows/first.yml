@@ -4,8 +4,8 @@ jobs:
   first-job:
     runs-on: ubuntu-latest
     steps:
-      - name: First Step
-        run: |
-          echo "Hello"
-          echo "World"
-          terraform init
+    - name: Checkout different repository
+      uses: actions/checkout@v2
+      with:
+        repository: rahul-aws/hello-world
+        ref: main
