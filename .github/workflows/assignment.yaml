@@ -6,7 +6,7 @@ jobs:
     name: Build & push docker image
     runs-on: ubuntu-latest
     env:
-      IMG_NAME: "rahul0526/<image>"  # Replace "<image>" with your desired image name
+      IMG_NAME: "rahul0526/test"  # Replace "<image>" with your desired image name
     steps:
       - name: Checkout
         uses: actions/checkout@v3
