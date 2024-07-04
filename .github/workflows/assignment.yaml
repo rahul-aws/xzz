@@ -1,12 +1,13 @@
 name: Build and publish a Docker image
-on: workflow_dispatch
+on:
+  workflow_dispatch
 
 jobs:
   build:
     name: Build & push docker image
     runs-on: ubuntu-latest
     env:
-      IMG_NAME: "rahul0526/<image>"  # Replace "<image>" with your desired image name
+      IMG_NAME: "rahul0526/test"  # Update to your custom repository and image name
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -38,5 +39,5 @@ jobs:
         with:
           context: .
           push: ${{ github.ref_type == 'tag' && !startsWith(github.ref, 'refs/tags/v0.')}}
-          tags: rahul0526/test # Update with your desired image name
+          tags: ${{ env.IMG_NAME }}:${{ github.sha }}
           labels: ${{ steps.metadata.outputs.labels }}
