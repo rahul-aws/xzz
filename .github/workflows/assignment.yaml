@@ -6,7 +6,7 @@ jobs:
     name: Build & push Docker image
     runs-on: ubuntu-latest  # You can choose a different runner (e.g., ubuntu-18.04) if needed
     env:
-      IMG_NAME: "ra03/<image>"  # Replace "<image>" with your desired image name
+      IMG_NAME: "rahul0526/test"  # Replace "<image>" with your desired image name
 
     steps:
       - name: Checkout
