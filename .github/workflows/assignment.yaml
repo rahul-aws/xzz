@@ -28,7 +28,6 @@ jobs:
 
       - name: Login to Docker Hub (using username/password from secret)
         # **Security Warning:** Using username/password for Docker Hub login is not recommended for production due to security risks.
-        if: ${{ github.ref_type == 'tag' }}
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
