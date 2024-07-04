@@ -6,7 +6,7 @@ jobs:
     name: Build & push docker image
     runs-on: ubuntu-latest
     env:
-      IMG_NAME: ${{ github.repository }}
+      IMG_NAME: "rahul0526/<image>"  # Replace "<image>" with your desired image name
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -25,11 +25,13 @@ jobs:
             type=semver,pattern={{major}}.{{minor}}
             type=raw,value={{sha}},enable=${{ github.ref_type != 'tag' }}
 
-      - name: Log in to Docker Hub (using username/password)
-        # **Security Warning:** Using username/password for Docker Hub login is not recommended for production due to security risks.
+      - name: Log in to Docker Hub (using token)
+        # **Security Improvement:** Using a Docker token instead of username/password
         if: ${{ github.ref_type == 'tag' }}
+        env:
+          DOCKER_LOGIN_PASSWORD: ${{ secrets.DOCKER_TOKEN }}  # Use Docker token stored in secret
         run: |
-          echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+          echo $DOCKER_LOGIN_PASSWORD | docker login --username rahul0526 --password-stdin
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
